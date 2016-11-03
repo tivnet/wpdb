@@ -37,3 +37,7 @@ phar.readonly = Off
 # License
 
 * GPL
+
+# Thanks
+
+* Torben Hansen for publishing the [Console Example](https://github.com/derhansen/symfony-console-example)

@@ -1,6 +1,6 @@
 filter:
     excluded_paths:
-        - 'Bin/*'
+        - 'bin/*'
         - 'vendor/*'
 
 tools:
