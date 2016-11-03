@@ -27,39 +27,40 @@ class SelfUpdateCommand extends Command {
 	 */
 	protected function configure() {
 		$this
-			->setName('selfupdate')
-			->setDescription('Updates wpdb.phar to the latest version')
-			->addOption('major', null, InputOption::VALUE_NONE, 'Allow major version update')
-		;
+			->setName( 'selfupdate' )
+			->setDescription( 'Updates wpdb.phar to the latest version' )
+			->addOption( 'major', null, InputOption::VALUE_NONE, 'Allow major version update' );
 	}
 
 	/**
 	 * Executes the update command
 	 *
-	 * @param InputInterface $input
+	 * @param InputInterface  $input
 	 * @param OutputInterface $output
+	 *
 	 * @return null|int
 	 */
-	protected function execute(InputInterface $input, OutputInterface $output) {
-		$output->writeln('Looking for updates...');
+	protected function execute( InputInterface $input, OutputInterface $output ) {
+		$output->writeln( 'Looking for updates...' );
 
 		try {
-			$manager = new Manager(Manifest::loadFile(self::MANIFEST_FILE));
-		} catch (FileException $e) {
+			$manager = new Manager( Manifest::loadFile( self::MANIFEST_FILE ) );
+		} catch ( FileException $e ) {
 			$output->writeln( /** @lang text */
-				'<error>Updates could not be fetched</error>');
+				'<error>Updates could not be fetched</error>' );
+
 			return 1;
 		}
 
 		$currentVersion = $this->getApplication()->getVersion();
-		$allowMajor = $input->getOption('major');
+		$allowMajor     = $input->getOption( 'major' );
 
-		if ($manager->update($currentVersion, $allowMajor)) {
+		if ( $manager->update( $currentVersion, $allowMajor ) ) {
 			$output->writeln( /** @lang text */
-				'<info>Updated to latest version</info>');
+				'<info>Updated to latest version</info>' );
 		} else {
 			$output->writeln( /** @lang text */
-				'<comment>Already up-to-date</comment>');
+				'<comment>Already up-to-date</comment>' );
 		}
 
 		return null;
