@@ -1,4 +1,4 @@
-# WordPress DB Manager
+# WordPress DB Manager CLI
 
 ## Changelog
 
