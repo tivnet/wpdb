@@ -7,8 +7,11 @@ include_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 
+new Tivnet\WPDB\Config();
+
 $app = new Application( 'WPDB: WordPress DB Manager', '@package_version@' );
 $app->addCommands( array(
+	new Tivnet\WPDB\Command\ListDumpsCommand(),
 	new Tivnet\WPDB\Command\HiCommand(),
 	new Tivnet\WPDB\Command\SelfUpdateCommand(),
 ) );

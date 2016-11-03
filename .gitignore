@@ -2,3 +2,5 @@
 vendor
 /internal/
 /wpdb.phar
+/dbdump-data/
+/public/
