@@ -56,8 +56,8 @@ class Config {
 		$this->path_project_root = getcwd();
 
 		$this->config = self::$config_defaults;
-		$this->load_config();
-		$this->load_wp_config();
+		$this->loadConfig();
+		$this->loadWPConfig();
 
 //		print_r( $this->config );
 	}
@@ -65,7 +65,7 @@ class Config {
 	/**
 	 * Load configuration parameters from JSON file, if exists.
 	 */
-	protected function load_config() {
+	protected function loadConfig() {
 
 		$file_config = implode( '/', array(
 			$this->path_project_root,
@@ -73,6 +73,7 @@ class Config {
 		) );
 
 		if ( is_file( $file_config ) && is_readable( $file_config ) ) {
+			/** @var string[] $config_overwrite */
 			$config_overwrite = json_decode( file_get_contents( $file_config ), JSON_OBJECT_AS_ARRAY );
 			if ( is_array( $config_overwrite ) ) {
 				$this->config = array_merge( $this->config, $config_overwrite );
@@ -83,7 +84,7 @@ class Config {
 	/**
 	 * Read defines from WP config.
 	 */
-	protected function load_wp_config() {
+	protected function loadWPConfig() {
 
 		$file_wp_config = implode( '/', array(
 			$this->path_project_root,
