@@ -7,6 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Tivnet\WPDB\Config;
+use Tivnet\WPDB\I;
 
 /**
  * Class ListDumpsCommand
@@ -40,7 +41,7 @@ class ListDumpsCommand extends Command {
 	 */
 	protected function execute( InputInterface $input, OutputInterface $output ) {
 
-		system( 'find ' . Config::$dir_dump . ' -name "*.' . Config::$dump_ext . '*" -exec ' . Config::$cmd_ls . ' {} ;' );
+		system( 'find ' . I::$cfg->get( 'dir_dump' ) . ' -name "*.' . I::$cfg->get( 'dump_ext' ) . '*" -exec ' . I::$cfg->get( 'cmd_ls' ) . ' {} ;' );
 
 		return null;
 	}

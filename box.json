@@ -15,6 +15,6 @@
     ],
     "git-version": "package_version",
     "main": "bin/wpdb",
-    "output": "wpdb.phar",
+    "output": "/cygwin64/usr/local/bin/wpdb.phar",
     "stub": true
 }
