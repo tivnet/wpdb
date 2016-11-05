@@ -1,8 +1,6 @@
 <?php
 namespace Tivnet\WPDB;
 
-use Tivnet\Console\Style;
-
 /**
  * Class Config
  * @package Tivnet\WPDB
