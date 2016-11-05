@@ -1,6 +1,8 @@
 <?php
 namespace Tivnet\WPDB;
 
+use Tivnet\Console\Style;
+
 /**
  * Class Config
  * @package Tivnet\WPDB
@@ -117,6 +119,9 @@ class Config {
 					$this->set( $matches[1], $matches[2] );
 				}
 			}
+		} else {
+			echo 'WordPress config file not found: ' . $file_wp_config . "\n" . 'You are probably in a wrong folder.';
+			exit( 1 );
 		}
 	}
 

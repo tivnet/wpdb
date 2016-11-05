@@ -43,4 +43,13 @@ class Style extends SymfonyStyle {
 			parent::title( $message );
 		}
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function success( $message ) {
+		if ( $this->getVerbosity() >= self::MIN_VERBOSITY ) {
+			parent::success( $message );
+		}
+	}
 }

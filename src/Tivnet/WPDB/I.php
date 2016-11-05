@@ -32,8 +32,9 @@ class I {
 		$app = new Application( Config::APPLICATION_TITLE, '@package_version@' );
 		$app->addCommands( array(
 			new Command\DumpCommand(),
-			new Command\ListDumpsCommand(),
 			new Command\HiCommand(),
+			new Command\ListDumpsCommand(),
+			new Command\LoadCommand(),
 			new Command\SelfUpdateCommand(),
 		) );
 		$app->run();

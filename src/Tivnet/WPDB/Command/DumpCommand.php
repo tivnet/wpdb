@@ -4,7 +4,6 @@ namespace Tivnet\WPDB\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Tivnet\Console\Style;
 use Tivnet\WPDB\I;
@@ -135,6 +134,8 @@ class DumpCommand extends Command {
 					$file_dump,
 				) ) );
 		*/
+
+		$io->success( 'Done.' );
 
 		return null;
 	}
