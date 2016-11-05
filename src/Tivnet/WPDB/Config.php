@@ -33,10 +33,16 @@ class Config {
 	 * @var string[]
 	 */
 	protected static $config_defaults = array(
-		'dir_dump'     => 'dbdump-data',
+		'env'          => '',
+		'dir_dump'     => 'dumps',
 		'dir_web_root' => 'public',
 		'dump_ext'     => 'sql',
+		'dump_prefix'  => 'wpdb',
 		'cmd_ls'       => 'ls -o --time-style long-iso',
+		'cmd_tail'     => 'tail -1',
+		'cmd_xz'       => 'xz -v',
+		'ext_xz'       => 'xz',
+		'dump_ignore'  => '',
 	);
 
 	/**
@@ -46,6 +52,14 @@ class Config {
 	 */
 	public function get( $key ) {
 		return isset( $this->config[ $key ] ) ? $this->config[ $key ] : '';
+	}
+
+	/**
+	 * @param string $key
+	 * @param string $value
+	 */
+	public function set( $key, $value = '' ) {
+		$this->config[ $key ] = $value;
 	}
 
 
@@ -58,6 +72,9 @@ class Config {
 		$this->config = self::$config_defaults;
 		$this->loadConfig();
 		$this->loadWPConfig();
+
+		$this->set( 'mysql_authorization', '--login-path=' . $this->get( 'DB_NAME' ) );
+
 
 //		print_r( $this->config );
 	}
@@ -97,7 +114,7 @@ class Config {
 			$regex_template = '/define\s*\(\s*["\'](DB_NAME|DB_USER|DB_HOST)["\']\s*,\s*["\'](.+)["\']\s*\)\s*;/';
 			foreach ( $lines as $line ) {
 				if ( preg_match( $regex_template, $line, $matches ) ) {
-					$this->config[ $matches[1] ] = $matches[2];
+					$this->set( $matches[1], $matches[2] );
 				}
 			}
 		}

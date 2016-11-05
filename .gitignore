@@ -4,3 +4,4 @@ vendor
 /wpdb.phar
 /dbdump-data/
 /public/
+/dumps/
