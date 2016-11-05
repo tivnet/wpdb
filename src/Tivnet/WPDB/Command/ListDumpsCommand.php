@@ -23,10 +23,6 @@ class ListDumpsCommand extends Command {
 	protected function configure() {
 		$this->setName( 'list-dumps' )
 		     ->setDescription( 'List dump files' )
-		     ->setDefinition( array(
-			     new InputOption( 'flag', 'f', InputOption::VALUE_NONE, 'Raise a flag' ),
-			     new InputArgument( 'activities', InputArgument::IS_ARRAY, 'Space-separated activities to perform', null ),
-		     ) )
 		     ->setHelp( /** @lang text */
 			     'The <info>list-dumps</info> shows the dump files in the `data` folder' );
 	}

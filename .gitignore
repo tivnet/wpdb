@@ -1,7 +1,6 @@
-.idea
-vendor
-/internal/
-/wpdb.phar
+/.idea/
+/.wpdb/
 /dbdump-data/
+/internal/
 /public/
-/dumps/
+/vendor/

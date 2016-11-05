@@ -33,8 +33,8 @@ class Config {
 	 * @var string[]
 	 */
 	protected static $config_defaults = array(
-		'env'          => '',
-		'dir_dump'     => 'dumps',
+		'env'          => 'tmp',
+		'dir_dump'     => '.wpdb',
 		'dir_web_root' => 'public',
 		'dump_ext'     => 'sql',
 		'dump_prefix'  => 'wpdb',
