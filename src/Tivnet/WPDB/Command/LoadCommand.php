@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Tivnet\Console\Style;
+use Tivnet\Console\Utils;
 use Tivnet\WPDB\I;
 
 /**
@@ -61,10 +62,7 @@ class LoadCommand extends Command {
 			return 1;
 		}
 
-		system( implode( ' ', array(
-			I::$cfg->get( 'cmd_ls' ),
-			$file_dump_xz_escaped
-		) ) );
+		$io->writeln( Utils::ls_l( $file_dump_xz ) );
 
 		if ( ! $io->confirm( 'Continue?', true ) ) {
 			return null;

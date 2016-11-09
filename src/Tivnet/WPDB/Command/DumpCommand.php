@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Tivnet\Console\Style;
+use Tivnet\Console\Utils;
 use Tivnet\WPDB\I;
 
 /**
@@ -87,11 +88,12 @@ class DumpCommand extends Command {
 
 		if ( $io->getVerbosity() >= Style::MIN_VERBOSITY ) {
 			$io->section( 'The dump file:' );
-			system( I::$cfg->get( 'cmd_ls' ) . ' ' . $file_dump_escaped );
+			$io->writeln( Utils::ls_l( $file_dump ) );
 			system( I::$cfg->get( 'cmd_tail' ) . ' ' . $file_dump_escaped );
 		}
 
-		$file_dump_xz = escapeshellarg( $file_dump . '.' . I::$cfg->get( 'ext_xz' ) );
+		$file_dump_xz = $file_dump . '.' . I::$cfg->get( 'ext_xz' );
+		$file_dump_xz_escaped = escapeshellarg( $file_dump_xz );
 
 		$xz_option_quiet = ( $io->getVerbosity() < Style::MIN_VERBOSITY ? 'q' : '' );
 
@@ -110,7 +112,7 @@ class DumpCommand extends Command {
 		system( implode( ' ', array(
 			I::$cfg->get( 'cmd_xz' ),
 			$xz_options_verify,
-			$file_dump_xz
+			$file_dump_xz_escaped
 		) ), $cmd_return );
 		if ( 0 !== (int) $cmd_return ) {
 			$io->error( "Verify failed. The return code is $cmd_return" );
@@ -120,10 +122,7 @@ class DumpCommand extends Command {
 
 		if ( ! $output->isQuiet() ) {
 			$io->section( 'Done.' );
-			system( implode( ' ', array(
-				I::$cfg->get( 'cmd_ls' ),
-				$file_dump_xz
-			) ) );
+			$io->writeln( Utils::ls_l( $file_dump_xz ) );
 		}
 
 		/*

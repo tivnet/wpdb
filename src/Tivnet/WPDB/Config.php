@@ -57,7 +57,6 @@ class Config {
 		'dir_web_root' => 'public',
 		'dump_ext'     => 'sql',
 		'dump_prefix'  => 'wpdb',
-		'cmd_ls'       => 'ls -o --time-style long-iso',
 		'cmd_tail'     => 'tail -1',
 		'cmd_xz'       => 'xz -v',
 		'ext_xz'       => 'xz',

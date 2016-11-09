@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Tivnet\Console\Utils;
 use Tivnet\WPDB\Config;
 use Tivnet\WPDB\I;
 
@@ -37,7 +38,17 @@ class ListDumpsCommand extends Command {
 	 */
 	protected function execute( InputInterface $input, OutputInterface $output ) {
 
-		system( 'find ' . I::$cfg->get( 'dir_dump' ) . ' -name "*.' . I::$cfg->get( 'dump_ext' ) . '*" -exec ' . I::$cfg->get( 'cmd_ls' ) . ' {} ;' );
+		$iterator = new \RegexIterator(
+			new \RecursiveIteratorIterator(
+				new \RecursiveDirectoryIterator( I::$cfg->get( 'dir_dump' ) )
+			),
+			'/.+\.' . I::$cfg->get( 'dump_ext' ) . '.*/',
+			\RecursiveRegexIterator::GET_MATCH
+		);
+
+		foreach ( $iterator as $path ) {
+			$output->writeln( Utils::ls_l( $path[0] ) );
+		}
 
 		return null;
 	}
