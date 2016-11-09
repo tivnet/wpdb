@@ -51,7 +51,7 @@ class DumpCommand extends Command {
 
 		$io->section( 'Creating the dump folder' );
 
-		if ( ! @mkdir( $dump_folder, null, true ) && ! is_dir( $dump_folder ) ) {
+		if ( ! @mkdir( $dump_folder, 0750, true ) && ! is_dir( $dump_folder ) ) {
 			$io->error( 'Cannot create folder: ' . $dump_folder );
 
 			return 1;
