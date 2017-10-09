@@ -14,7 +14,7 @@
 
 ### Development Requirements
 
-* Both [Composer](https://getcomposer.org) and [Box](http://box-project.org) should be installed.
+* Both [Composer](https://getcomposer.org) and [Box](https://github.com/box-project/box2) should be installed.
 * php.ini settings:
 ```
     phar.readonly = Off
