@@ -32,13 +32,13 @@ class I {
 	 * Configure and run the application.
 	 */
 	protected static function runApplication() {
-		self::$app = new Application( Config::APPLICATION_TITLE, '@package_version@' );
+		self::$app = new Application( Config::APPLICATION_TITLE, '2.0.0' );
 		self::$app->addCommands( array(
 			new Command\DumpCommand(),
 			new Command\HiCommand(),
 			new Command\ListDumpsCommand(),
 			new Command\LoadCommand(),
-			new Command\SelfUpdateCommand(),
+			// new Command\SelfUpdateCommand(),
 		) );
 		self::$app->run();
 	}

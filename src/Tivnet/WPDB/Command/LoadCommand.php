@@ -1,4 +1,5 @@
 <?php
+
 namespace Tivnet\WPDB\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -11,6 +12,7 @@ use Tivnet\WPDB\I;
 
 /**
  * Class LoadCommand
+ *
  * @package Tivnet\WPDB\Command
  */
 class LoadCommand extends Command {
@@ -22,12 +24,12 @@ class LoadCommand extends Command {
 	 */
 	protected function configure() {
 		$this->setName( 'load' )
-		     ->setDescription( 'Load database from a dump file' )
-		     ->setDefinition( array(
-			     new InputOption( 'env', 'e', InputOption::VALUE_OPTIONAL, 'Specify the environment' ),
-		     ) )
-		     ->setHelp( /** @lang text */
-			     'The <info>load</info> runs `mysql` to load the SQL file from the dumps folder' );
+			 ->setDescription( 'Load database from a dump file' )
+			 ->setDefinition( array(
+				 new InputOption( 'env', 'e', InputOption::VALUE_OPTIONAL, 'Specify the environment' ),
+			 ) )
+			 ->setHelp( /** @lang text */
+				 'The <info>load</info> runs `mysql` to load the SQL file from the dumps folder' );
 	}
 
 	/**
@@ -36,15 +38,16 @@ class LoadCommand extends Command {
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
 	 *
-	 * @return null|int
+	 * @return int
 	 */
-	protected function execute( InputInterface $input, OutputInterface $output ) {
+	protected function execute( InputInterface $input, OutputInterface $output ): int {
 		$io = new Style( $input, $output );
 		$io->title( $this->getDescription() );
 
 		$env = $input->getOption( 'env' ) ?: I::$cfg->get( 'env' );
 
 		$dump_folder = implode( '/', array(
+			getcwd(),
 			I::$cfg->get( 'dir_dump' ),
 			$env,
 		) );
@@ -64,8 +67,8 @@ class LoadCommand extends Command {
 
 		$io->writeln( Utils::ls_l( $file_dump_xz ) );
 
-		if ( ! $io->confirm( 'Continue?', true ) ) {
-			return null;
+		if ( ! $io->confirm( 'Continue?' ) ) {
+			return 0;
 		}
 
 		$xz_option_quiet = ( $io->getVerbosity() < Style::MIN_VERBOSITY ? 'q' : '' );
@@ -76,7 +79,7 @@ class LoadCommand extends Command {
 		system( implode( ' ', array(
 			I::$cfg->get( 'cmd_xz' ),
 			$xz_options_decompress,
-			$file_dump_xz_escaped
+			$file_dump_xz_escaped,
 		) ) );
 
 		$io->section( 'Loading' );
@@ -97,7 +100,7 @@ class LoadCommand extends Command {
 
 		$cmd_return = 0;
 		system( $cmd, $cmd_return );
-		if ( 0 !== (int) $cmd_return ) {
+		if ( 0 !== $cmd_return ) {
 			$io->error( "Load failed. The return code is $cmd_return" );
 
 			return 1;
@@ -110,7 +113,7 @@ class LoadCommand extends Command {
 
 		$io->success( 'Done.' );
 
-		return null;
+		return 0;
 
 	}
 }

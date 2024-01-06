@@ -35,11 +35,11 @@ class HiCommand extends Command {
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
 	 *
-	 * @return null|int
+	 * @return int
 	 */
-	protected function execute( InputInterface $input, OutputInterface $output ) {
+	protected function execute( InputInterface $input, OutputInterface $output ) : int {
 		$output->writeln( 'Hi World!' );
 
-		return null;
+		return 0;
 	}
 }

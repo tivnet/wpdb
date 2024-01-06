@@ -1,4 +1,5 @@
 <?php
+
 namespace Tivnet\Console;
 
 use Symfony\Component\Console\Output\Output;
@@ -19,7 +20,7 @@ class Style extends SymfonyStyle {
 	 * The error output is forced.
 	 * {@inheritdoc}
 	 */
-	public function error( $message ) {
+	public function error( $message ): void {
 		$old_verbosity = $this->getVerbosity();
 		$this->setVerbosity( Output::VERBOSITY_NORMAL );
 		parent::error( $message );
@@ -29,7 +30,7 @@ class Style extends SymfonyStyle {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function section( $message ) {
+	public function section( string $message ): void {
 		if ( $this->getVerbosity() >= self::MIN_VERBOSITY ) {
 			parent::section( $message );
 		}
@@ -38,7 +39,7 @@ class Style extends SymfonyStyle {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function title( $message ) {
+	public function title( string $message ): void {
 		if ( $this->getVerbosity() >= self::MIN_VERBOSITY ) {
 			parent::title( $message );
 		}
@@ -47,7 +48,7 @@ class Style extends SymfonyStyle {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function success( $message ) {
+	public function success( $message ): void {
 		if ( $this->getVerbosity() >= self::MIN_VERBOSITY ) {
 			parent::success( $message );
 		}

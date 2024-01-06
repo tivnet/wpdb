@@ -1,0 +1,8 @@
+{
+  "name": "wpdb",
+  "version": "2.0.0",
+  "description": "WPDB",
+  "scripts": {
+    "cpz:prod": "composer update --ansi --no-dev -o"
+  }
+}

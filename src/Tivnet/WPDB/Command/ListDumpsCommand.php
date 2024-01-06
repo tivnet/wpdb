@@ -1,17 +1,16 @@
 <?php
+
 namespace Tivnet\WPDB\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Tivnet\Console\Utils;
-use Tivnet\WPDB\Config;
 use Tivnet\WPDB\I;
 
 /**
  * Class ListDumpsCommand
+ *
  * @package Tivnet\WPDB\Command
  */
 class ListDumpsCommand extends Command {
@@ -23,9 +22,9 @@ class ListDumpsCommand extends Command {
 	 */
 	protected function configure() {
 		$this->setName( 'list-dumps' )
-		     ->setDescription( 'List dump files' )
-		     ->setHelp( /** @lang text */
-			     'The <info>list-dumps</info> shows the dump files in the `data` folder' );
+			 ->setDescription( 'List dump files' )
+			 ->setHelp( /** @lang text */
+				 'The <info>list-dumps</info> shows the dump files in the `data` folder' );
 	}
 
 	/**
@@ -34,22 +33,22 @@ class ListDumpsCommand extends Command {
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
 	 *
-	 * @return null|int
+	 * @return int
 	 */
-	protected function execute( InputInterface $input, OutputInterface $output ) {
+	protected function execute( InputInterface $input, OutputInterface $output ): int {
 
 		$iterator = new \RegexIterator(
 			new \RecursiveIteratorIterator(
-				new \RecursiveDirectoryIterator( I::$cfg->get( 'dir_dump' ) )
+				new \RecursiveDirectoryIterator( getcwd() . '/' . I::$cfg->get( 'dir_dump' ) )
 			),
 			'/.+\.' . I::$cfg->get( 'dump_ext' ) . '.*/',
-			\RecursiveRegexIterator::GET_MATCH
+			\RegexIterator::GET_MATCH
 		);
 
 		foreach ( $iterator as $path ) {
 			$output->writeln( Utils::ls_l( $path[0] ) );
 		}
 
-		return null;
+		return 0;
 	}
 }

@@ -3,12 +3,14 @@
   "description": "WordPress DB Manager",
   "license": "GPL-3.0",
   "require": {
-    "symfony/console": "^3.1.6",
-    "herrera-io/phar-update": "^2.0.0"
+    "symfony/console": "v7.0.2"
   },
   "autoload": {
-    "psr-0": {
-      "Tivnet\\": "src/"
+    "psr-4": {
+      "Tivnet\\": "src/Tivnet"
     }
-  }
+  },
+  "_comment": [
+    "herrera-io/phar-update:2.0.0"
+  ]
 }
