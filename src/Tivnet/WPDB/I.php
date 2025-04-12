@@ -32,7 +32,7 @@ class I {
 	 * Configure and run the application.
 	 */
 	protected static function runApplication() {
-		self::$app = new Application( Config::APPLICATION_TITLE, '2.0.0' );
+		self::$app = new Application( Config::APPLICATION_TITLE, '2.0.1' );
 		self::$app->addCommands( array(
 			new Command\DumpCommand(),
 			new Command\HiCommand(),

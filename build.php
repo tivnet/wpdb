@@ -1,6 +1,6 @@
 <?php
 
-$basedir = __DIR__;
+// $basedir = __DIR__;
 $basedir = '.';
 
 // Step 1: Create a Phar archive named wpdb.phar
@@ -27,7 +27,7 @@ foreach ( [ 'src', 'vendor' ] as $folder ) {
 $phar->addFile( './index.php', 'index.php' );
 
 // Step 6: Set the main file (entry point) for the Phar archive
-$phar->setStub( $phar->createDefaultStub( 'index.php' ) );
+$phar->setStub( $phar::createDefaultStub( 'index.php' ) );
 
 // Step 7: Stop buffering and save the Phar archive
 $phar->stopBuffering();

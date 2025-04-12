@@ -4,6 +4,13 @@
 
 ## Changelog
 
+### 2025-04-12 - version 2.0.1
+
+* "symfony/console": "v7.2.5"
+* Minor code cleanup
+
+---
+
 ### 0.1.* (2016-11-06)
 
 * Some commands are working. Beta-testing.
@@ -14,7 +21,7 @@
 
 ### Development Requirements
 
-* Both [Composer](https://getcomposer.org) and [Box](https://github.com/box-project/box2) should be installed.
+* ~~Both~~ [Composer](https://getcomposer.org) ~~and [Box](https://github.com/box-project/box2)~~ should be installed.
 * php.ini settings:
 ```
     phar.readonly = Off

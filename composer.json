@@ -3,7 +3,11 @@
   "description": "WordPress DB Manager",
   "license": "GPL-3.0",
   "require": {
-    "symfony/console": "v7.0.2"
+    "symfony/console": "v7.2.5"
+  }
+  ,
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
   },
   "autoload": {
     "psr-4": {
